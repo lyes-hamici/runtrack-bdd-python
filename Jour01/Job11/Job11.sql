@@ -1,0 +1,1 @@
+SELECT * FROM LaPlateforme.etudiant WHERE Id = 5;
