@@ -1,0 +1,1 @@
+DELETE FROM etudiant WHERE Nom = "John" and Prenom = "Doe";
