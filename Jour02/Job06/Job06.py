@@ -26,7 +26,7 @@ result = cursor.fetchall()
 
 # Afficher les résultats
 for row in result:
-    print(f"La capaciter de toute les salles est de :  {row} ")
+    print(f"la capacite total des salle de LaPlateforme est de {row} ")
 
 # Fermer le curseur et la connexion
 cursor.close()
