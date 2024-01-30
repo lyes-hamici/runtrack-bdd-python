@@ -18,7 +18,7 @@ conn = mysql.connector.connect(host=host, user=user, password=password, database
 cursor = conn.cursor()
 
 # Exemple d'exécution d'une requête SELECT
-query = "SELECT SUM(superficie) AS superficie_total FROM etage"
+query = "SELECT SUM(superficie)  FROM etage"
 cursor.execute(query)
 
 # Récupérer les résultats de la requête
