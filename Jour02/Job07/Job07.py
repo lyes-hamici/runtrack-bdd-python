@@ -55,31 +55,31 @@ conn2.close()
 
 
 
-class Salarie:
+class Employe:
     def __init__(self, host, user, password, database):
         self.conn = mysql.connector.connect(host=host, user=user, password=password, database=database)
         self.cursor = self.conn.cursor()
 
-    def create_salarie(self, nom, poste, salaire):
-        sql_query = "INSERT INTO salarie (nom, poste, salaire) VALUES (%s, %s, %s)"
-        values = (nom, poste, salaire)
+    def create_employe(self, nom,prenom, salaire):
+        sql_query = "INSERT INTO employe (nom,prenom,salaire) VALUES (%s,%s,%s)"
+        values = (nom, prenom, salaire)
         self.cursor.execute(sql_query, values)
         self.conn.commit()
 
-    def read_salarie(self):
-        sql_query = "SELECT * FROM salarie"
+    def read_employe(self):
+        sql_query = "SELECT * FROM employe"
         self.cursor.execute(sql_query)
         return self.cursor.fetchall()
 
-    def update_salarie(self, salarie_id, nv_nom, nv_poste, nv_salaire):
-        sql_query = "UPDATE salarie SET nom=%s, poste=%s, salaire=%s WHERE id=%s"
-        values = (nv_nom, nv_poste, nv_salaire, salarie_id)
+    def update_employe(self,employe_id,nv_nom,nv_prenom,nv_salaire):
+        sql_query = "UPDATE employe SET nom=%s, prenom=%s, salaire=%s WHERE id=%s"
+        values = (nv_nom, nv_prenom, nv_salaire, employe_id)
         self.cursor.execute(sql_query, values)
         self.conn.commit()
 
-    def delete_salarie(self, salarie_id):
-        sql_query = "DELETE FROM salarie WHERE id=%s"
-        values = (salarie_id,)
+    def delete_employe(self, employe_id):
+        sql_query = "DELETE FROM employe WHERE id=%s"
+        values = (employe_id,)
         self.cursor.execute(sql_query, values)
         self.conn.commit()
 
@@ -88,19 +88,19 @@ class Salarie:
         self.conn.close()
 
 
-salarie_manager = Salarie(host='localhost', user=user, password=mdp, database='Job07')
+employe_manager = Employe(host='localhost', user=user, password=mdp, database='Job07')
 # Exemple d'opérations CRUD
-salarie_manager.create_salarie('John Doe','Ingénieur',50000)
+employe_manager.create_employe('John','Doe',50000)
 print("Liste des salariés après création :")
-print(salarie_manager.read_salarie())
+print(employe_manager.read_employe())
 
-salarie_manager.update_salarie(salarie_id=1, nv_nom='John Doe Jr', nv_poste='Développeur', nv_salaire=60000)
+employe_manager.update_employe(1,'Jhon','Doe Jr',5000)
 print("Liste des salariés après mise à jour :")
-print(salarie_manager.read_salarie())
+print(employe_manager.read_employe())
 
-salarie_manager.delete_salarie(salarie_id=1)
+employe_manager.delete_employe(employe_id=1)
 print("Liste des salariés après suppression :")
-print(salarie_manager.read_salarie())
+print(employe_manager.read_employe())
 
 # Fermer la connexion à la base de données
-salarie_manager.close_connection()
+employe_manager.close_connection()
